@@ -1,0 +1,15 @@
+{% extends 'eventfinder/Finder_base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div>
+  <h2>Register Here:</h2>
+  <p>Please input all your information correctly to register for the event you would like to attend</p>
+  <form action="{% url 'EventFinder:registration' event_id=event_id %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Save" class="btn btn-primary btn-large">
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'eventfinder/Finder_base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="col-md-8">
+  <h2>Event Name:{{object.name}}</h2>
+  <br>
+  <h2>Organiser:{{object.organizer}}</h2>
+  <br>
+  <h2>Date:{{object.date}}</h2>
+  <br>
+  <h2>Venue: {{object.venue}}</h2>
+  <br>
+  <h2>Details on Event: {{object.details}}</h2>
+  <br>
+  <h2> <img style="height:300px;" src="{{object.image.url}}"> </h2>
+  <br>
+</div>
+
+<a class="button"  style="background-color: #1c87c9;
+        border: none;
+        border-radius: 50px;
+        color: black;
+        padding: 20px 34px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;" href="{% url 'EventFinder:registration' event_id=object.id %}">Register</a>
+{% endblock%}

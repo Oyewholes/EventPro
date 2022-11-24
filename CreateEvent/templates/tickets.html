@@ -1,0 +1,36 @@
+{% extends 'CE_base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <section>
+    <h3>{{user.username}}</h3>
+    <h4>{{ my_date|date:"Y-m-d" }}</h4>
+    <ol>
+      <li><a href="#">Basic info</a></li>
+      <li><a href="#">Details</a></li>
+      <li><a href="#">Tickets</a></li>
+    </ol>
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Order Options</a></li>
+      <li><a href="#">Marketing</a></li>
+      <li><a href="#"></a>Manage Attendees</li>
+    </ul>
+  </section>
+  <section>
+    <h3 class="btn btn-primary btn-large"><a href="#"></a>Create a section</h3>
+    <h3 class="btn btn-primary btn-large"><a href="#"></a>Add tickets</h3>
+  </section>
+  <section>
+    <h2>Add tickets</h2>
+    <form action="{% url 'CreateEvent:addticket' %}" method="POST" id="">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" value="Save" class="btn btn-primary btn-large">
+    </form>
+  </section>
+</main>
+
+
+
+{% endblock %}

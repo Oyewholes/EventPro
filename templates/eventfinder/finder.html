@@ -1,0 +1,24 @@
+{% extends 'eventfinder/Finder_base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="col-md-8">
+  <h4>Things to do in</h4>
+  <h2>Lagos?</h2>
+  <h1>Events</h1>
+</div>
+<div style="display:flex; flex-wrap: wrap; width:1500px; align-items:center;" data-spy="scroll">
+{% for event in object_list %}
+    <div class="card" style="width: 200px; margin:20px">
+      <img class="card-img-top" src="{{ event.image.url }}">
+      <div class="card-body">
+        <h5 class="card-title">{{event.name }}</h5>
+        <p class="card-text">{{ event.date|date }}.</p>
+        <a href="{% url 'EventFinder:detail' pk=event.id  %}">Register</a>
+        <p class="card-text">{{ event.venue }}</p>
+      </div>
+    </div>
+<!--    <li><img style="height:50px;" src="{{ event.image.url }}"><a href="{% url 'EventFinder:detail' pk=event.id  %}">{{ event.name }} - {{ event.date|date }} - {{ event.venue }}</a></li>-->
+{% endfor %}
+</div>
+{% endblock%}
