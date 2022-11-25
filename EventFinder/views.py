@@ -1,23 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views import generic
-from django.views.generic import TemplateView
-from django.core.mail import EmailMessage
 from django.core.mail import send_mail
-from django.conf import settings
-from django.template.loader import render_to_string
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
-from . import models
 from CreateEvent.models import BasicInfo
 from EventFinder.models import Register
-from django.http import HttpResponse
-from braces.views import SelectRelatedMixin
-from django.http import Http404
+# from braces.views import SelectRelatedMixin
 
 # Create your views here.
 
-class EventFinder(generic.ListView, SelectRelatedMixin):
+class EventFinder(generic.ListView):
     model = BasicInfo
     paginate_by = 10 #if pagination is desired
 
@@ -27,7 +19,7 @@ class EventFinder(generic.ListView, SelectRelatedMixin):
         return context
     template_name = 'eventfinder/finder.html'
 
-class EventDetail(generic.DetailView, SelectRelatedMixin):
+class EventDetail(generic.DetailView):
     model = BasicInfo
 
     # queryset = models.EventFinder.objects.all()
@@ -43,7 +35,7 @@ class EventDetail(generic.DetailView, SelectRelatedMixin):
 
     template_name = 'eventfinder/eventdetail.html'
 
-class RegistrationPage(generic.CreateView, SelectRelatedMixin):
+class RegistrationPage(generic.CreateView):
     fields = ("first_name","last_name", "phone_number","email_address")
     model = Register
 
